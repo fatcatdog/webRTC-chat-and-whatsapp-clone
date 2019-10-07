@@ -1,0 +1,5 @@
+package com.jacob.demo.model;
+
+public class UserDTO {
+
+}

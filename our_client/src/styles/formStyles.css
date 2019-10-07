@@ -1,0 +1,13 @@
+.formField {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-left: 10%;
+}
+
+.centerStuff{
+   margin: auto;
+   width: 50%;
+   border: 15px solid #85144b;
+   padding: 10px;
+   margin-top: 100px;
+}

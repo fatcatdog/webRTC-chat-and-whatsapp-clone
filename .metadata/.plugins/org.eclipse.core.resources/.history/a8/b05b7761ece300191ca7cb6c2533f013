@@ -1,0 +1,5 @@
+package com.jacob.demo.config;
+
+public class SwaggerConfig {
+
+}

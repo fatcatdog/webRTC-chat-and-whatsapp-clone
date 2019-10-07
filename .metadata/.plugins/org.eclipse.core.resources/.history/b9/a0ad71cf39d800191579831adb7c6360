@@ -1,0 +1,5 @@
+package com.jacob.demo.controller;
+
+public class JwtAuthenticationController {
+
+}

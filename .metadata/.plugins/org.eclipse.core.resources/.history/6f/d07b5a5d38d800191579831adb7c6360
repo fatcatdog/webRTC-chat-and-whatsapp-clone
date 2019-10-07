@@ -1,0 +1,5 @@
+package com.jacob.demo.service;
+
+public class JwtUserDetailsService {
+
+}

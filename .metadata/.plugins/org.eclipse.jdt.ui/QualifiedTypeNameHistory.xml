@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+<fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
+<fullyQualifiedTypeName name="com.jacob.demo.model.DAOUser"/>
+<fullyQualifiedTypeName name="com.jacob.demo.repository.UserRepository"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.security.authentication.AuthenticationManager"/>
+<fullyQualifiedTypeName name="com.jacob.demo.service.JwtUserDetailsService"/>
+<fullyQualifiedTypeName name="com.jacob.demo.config.JwtTokenUtil"/>
+<fullyQualifiedTypeName name="com.jacob.demo.model.JwtResponse"/>
+<fullyQualifiedTypeName name="com.jacob.demo.model.UserDTO"/>
+<fullyQualifiedTypeName name="com.jacob.demo.model.JwtRequest"/>
+<fullyQualifiedTypeName name="org.springframework.security.core.userdetails.User"/>
+</qualifiedTypeNameHistroy>
