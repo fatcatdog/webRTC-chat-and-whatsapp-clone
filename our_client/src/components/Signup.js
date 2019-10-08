@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // import Header from './Header';
 import { useInput } from './useInput';
 import '../styles/formStyles.css';
+import { CONFIRMSIGNUPDATA, LOGINDATA } from '../constants';
+import {  navigate } from "hookrouter";
 
 export default function Signup(props) {
 
@@ -10,9 +12,46 @@ export default function Signup(props) {
   const { value:password, bind:bindPassword, reset:resetPassword } = useInput('');
   const { value:confirmPassword, bind:bindConfirmPassword, reset:resetConfirmPassword } = useInput('');
 
+  async function ourSignUpAttempt(one, two, three, four){
+
+    const url = 'http://localhost:8080/register';
+
+    LOGINDATA['username'] = one;
+    LOGINDATA['password'] = two;
+
+    CONFIRMSIGNUPDATA['username'] = three;
+    CONFIRMSIGNUPDATA['password'] = four;
+
+    if((LOGINDATA.username === CONFIRMSIGNUPDATA.username) && (LOGINDATA.password === CONFIRMSIGNUPDATA.password)) {
+      try {
+        const response = await fetch(url, {
+          method: 'POST', // or 'PUT'
+          body: JSON.stringify(LOGINDATA), // data can be `string` or {object}!
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        if(response.status === 200) {
+          // const json = await response.json();
+          navigate("/login");
+        }
+        } catch (error) {
+          console.error('Error:', error);
+          LOGINDATA['username'] = '';
+          LOGINDATA['password'] = '';
+          CONFIRMSIGNUPDATA['username'] = '';
+          CONFIRMSIGNUPDATA['password'] = '';
+        }
+    }
+
+  }
+
    const handleSubmit = (evt) => {
        evt.preventDefault();
        alert(`Submitting Username: ${userName} Password: ${password} confirmUserName: ${confirmUserName} confirmPassword: ${confirmPassword}`);
+
+       ourSignUpAttempt(userName, password, confirmUserName, confirmPassword);
+
        resetUserName();
        resetPassword();
        resetConfirmUserName();

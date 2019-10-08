@@ -1,7 +1,39 @@
-import React, { useState, useEffect } from "react";
-// import Header from './Header';
+import React from "react";
 import { useInput } from './useInput';
 import '../styles/formStyles.css';
+import { ACCESS_TOKEN, LOGINDATA } from '../constants';
+import {  navigate } from "hookrouter";
+
+async function ourAuthenticateAttempt(one, two){
+  localStorage.removeItem(ACCESS_TOKEN);
+
+  const url = 'http://localhost:8080/authenticate';
+
+  LOGINDATA['username'] = one;
+  LOGINDATA['password'] = two;
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(LOGINDATA), // data can be `string` or {object}!
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if(response.status === 200) {
+      const json = await response.json();
+      // console.log('Success:', JSON.stringify(json['token']));
+      localStorage.setItem(ACCESS_TOKEN, JSON.stringify(json.token));
+      navigate("/home");
+    }
+    } catch (error) {
+      console.error('Error:', error);
+      LOGINDATA['username'] = '';
+      LOGINDATA['password'] = '';
+    }
+}
+
+
 
 export default function Login(props) {
 
@@ -11,6 +43,8 @@ export default function Login(props) {
    const handleSubmit = (evt) => {
        evt.preventDefault();
        alert(`Submitting Username: ${userName} Password: ${password}`);
+
+       ourAuthenticateAttempt(userName, password);
        resetUserName();
        resetPassword();
     }

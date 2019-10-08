@@ -53,6 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+	    http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
+	}
 	 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -69,8 +73,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// Add a filter to validate the tokens with every request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-		httpSecurity.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
-
 	}
 	
 		//allowing swagger ui things to be unauthenticated
