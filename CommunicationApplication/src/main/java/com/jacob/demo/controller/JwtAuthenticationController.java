@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jacob.demo.config.JwtTokenUtil;
+import com.jacob.demo.model.DAOUser;
 import com.jacob.demo.model.JwtRequest;
 import com.jacob.demo.model.JwtResponse;
 import com.jacob.demo.model.UserDTO;
@@ -47,7 +48,14 @@ public class JwtAuthenticationController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.save(user));
+		
+		boolean usernameAvailable = userDetailsService.checkIfUsernameTaken(user.getUsername());
+		
+		if(usernameAvailable) {
+			return ResponseEntity.ok(userDetailsService.save(user));
+		} else {
+			return ResponseEntity.ok("Username already taken");
+		}
 	}
 
 	private void authenticate(String username, String password) throws Exception {
@@ -57,6 +65,8 @@ public class JwtAuthenticationController {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
+		} catch (Exception e) {
+			System.out.println("JwtAuthenticationController authenticate exception :( " + e);
 		}
 	}
 }

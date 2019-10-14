@@ -39,5 +39,21 @@ public class JwtUserDetailsService implements UserDetailsService {
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 		return userRepository.save(newUser);
 	}
+	
+	public boolean checkIfUsernameTaken(String userSubmittedUsername) {
+		
+		try {
+			DAOUser user = userRepository.findByUsername(userSubmittedUsername);
+
+			if(user == null) { 
+				System.out.println("Hey Dawg");
+				return true;
+			} else {
+				return false;
+			} 
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }

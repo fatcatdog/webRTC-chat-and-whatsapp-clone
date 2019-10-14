@@ -1,0 +1,29 @@
+package com.jacob.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ActiveUsersController {
+
+	@Autowired
+	private SessionRegistry sessionRegistry;
+	
+	public void listLoggedInUsers() {
+	    final List<Object> allPrincipals = sessionRegistry.getAllPrincipals();
+	
+	    for(final Object principal : allPrincipals) {
+	        if(principal instanceof UserDetails) {
+	            final UserDetails user = (UserDetails) principal;
+	
+	            // Do something with user
+	            System.out.println(user);
+	        }
+	    }
+	}
+	
+}

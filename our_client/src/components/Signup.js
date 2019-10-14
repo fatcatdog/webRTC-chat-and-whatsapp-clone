@@ -3,7 +3,7 @@ import React from "react";
 import { useInput } from './useInput';
 import '../styles/formStyles.css';
 import { CONFIRMSIGNUPDATA, LOGINDATA } from '../constants';
-import {  navigate } from "hookrouter";
+import {  navigate, A } from "hookrouter";
 
 export default function Signup(props) {
 
@@ -13,6 +13,7 @@ export default function Signup(props) {
   const { value:confirmPassword, bind:bindConfirmPassword, reset:resetConfirmPassword } = useInput('');
 
   async function ourSignUpAttempt(one, two, three, four){
+    console.log("Method getting called? ");
 
     const url = 'http://localhost:8080/register';
 
@@ -42,13 +43,15 @@ export default function Signup(props) {
           CONFIRMSIGNUPDATA['username'] = '';
           CONFIRMSIGNUPDATA['password'] = '';
         }
+    } else {
+      console.log("Strings dont match...");
     }
 
   }
 
    const handleSubmit = (evt) => {
        evt.preventDefault();
-       alert(`Submitting Username: ${userName} Password: ${password} confirmUserName: ${confirmUserName} confirmPassword: ${confirmPassword}`);
+       // alert(`Submitting Username: ${userName} Password: ${password} confirmUserName: ${confirmUserName} confirmPassword: ${confirmPassword}`);
 
        ourSignUpAttempt(userName, password, confirmUserName, confirmPassword);
 
@@ -59,6 +62,10 @@ export default function Signup(props) {
   }
 
   return (
+    <div>
+      <div className="subHeader">
+        <h1>Sign Up or <A href="/login">Login</A></h1>
+      </div>
     <div className="centerStuff">
    <form onSubmit={handleSubmit}>
    <div className="formField">
@@ -76,19 +83,22 @@ export default function Signup(props) {
      <div className="formField">
        <label>
          Password:{" "}
-         <input type="text" {...bindPassword} />
+         <input type="password" {...bindPassword} />
        </label>
       </div>
       <div className="formField">
         <label>
           Confirm Password:{" "}
-          <input type="text" {...bindConfirmPassword} />
+          <input type="password" {...bindConfirmPassword} />
         </label>
        </div>
        <div className="formField">
-        <input type="submit" value="Submit" />
+         <div className="submitButton">
+           <input type="submit" value="Submit" />
+        </div>
         </div>
    </form>
    </div>
+  </div>
  );
 }
