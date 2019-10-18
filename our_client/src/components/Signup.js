@@ -4,6 +4,7 @@ import { useInput } from './useInput';
 import '../styles/formStyles.css';
 import { CONFIRMSIGNUPDATA, LOGINDATA } from '../constants';
 import {  navigate, A } from "hookrouter";
+import Header from './Header';
 
 export default function Signup(props) {
 
@@ -63,6 +64,7 @@ export default function Signup(props) {
 
   return (
     <div>
+      <Header />
       <div className="subHeader">
         <h1>Sign Up or <A href="/login">Login</A></h1>
       </div>

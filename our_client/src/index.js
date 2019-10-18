@@ -5,10 +5,13 @@ import * as serviceWorker from './serviceWorker';
 
 import { useRoutes } from "hookrouter";
 import routes from "./router";
+import NotFoundPage from './components/NotFoundPage';
+
 
 function App() {
   const routeResult = useRoutes(routes);
-  return routeResult;
+
+  return routeResult || <NotFoundPage />;
 }
 
 const rootElement = document.getElementById("root");

@@ -3,6 +3,7 @@ import { useInput } from './useInput';
 import '../styles/formStyles.css';
 import { ACCESS_TOKEN, LOGINDATA } from '../constants';
 import {  navigate, A } from "hookrouter";
+import Header from './Header';
 
 async function ourAuthenticateAttempt(one, two){
   localStorage.removeItem(ACCESS_TOKEN);
@@ -26,7 +27,7 @@ async function ourAuthenticateAttempt(one, two){
       localStorage.setItem(ACCESS_TOKEN, json.token);
       navigate("/home");
     } else if(response.status === 401) {
-      
+
     }
     } catch (error) {
       console.log('Error:', error);
@@ -51,6 +52,7 @@ export default function Login(props) {
 
   return (
   <div>
+    <Header />
     <div className="subHeader">
       <h1>Login or <A href="/signup">Signup</A></h1>
     </div>
