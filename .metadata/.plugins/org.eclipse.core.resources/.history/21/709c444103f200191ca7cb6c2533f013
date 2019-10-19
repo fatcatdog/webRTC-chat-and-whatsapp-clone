@@ -79,6 +79,5 @@ public class JwtAuthenticationController {
 		} catch (Exception e) {
 			System.out.println("JwtAuthenticationController authenticate exception :( " + e);
 		}
-		
 	}
 }

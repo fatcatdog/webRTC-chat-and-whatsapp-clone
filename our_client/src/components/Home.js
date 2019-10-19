@@ -3,6 +3,7 @@ import { ACCESS_TOKEN } from '../constants';
 import {  navigate, A } from "hookrouter";
 import { LOGINDATA, LOGGEDINUSERENDPOINT, CHECKLOGGEDINENDPOINT } from '../constants';
 import Header from './Header';
+import Login from './Login';
 
 const useFetchLoggedInUsers = url => {
   const [items, setItems] = useState(null);
@@ -19,11 +20,11 @@ const useFetchLoggedInUsers = url => {
       if(response.status === 200) {
         const json = await response.json();
 
-        const listOfJson = json.map((userName, index) =>
+        const listOfJson = json.map((username, index) =>
            // ourString = "/startchat/" + {userName.toString()};
 
           <li key={index}>
-          <A href={"/startchat/" + userName.toString()} userName>{index} {userName}</A>
+          <A href={"/startchat/" + username.toString()} username>{index} {username}</A>
           </li>
         );
 
@@ -80,6 +81,12 @@ export default function Home() {
 
   const loggedInUser = useFetchLogin(CHECKLOGGEDINENDPOINT);
   const items = useFetchLoggedInUsers(LOGGEDINUSERENDPOINT);
+
+  if(localStorage.getItem(ACCESS_TOKEN) == ""){
+    return(
+      <Login />
+    );
+  }
 
     return (
       <div>

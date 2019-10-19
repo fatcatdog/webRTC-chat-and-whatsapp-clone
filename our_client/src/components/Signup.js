@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState } from "react";
 // import Header from './Header';
 import { useInput } from './useInput';
 import '../styles/formStyles.css';
@@ -12,6 +12,7 @@ export default function Signup(props) {
   const { value:confirmUserName, bind:bindConfirmUserName, reset:resetConfirmUserName } = useInput('');
   const { value:password, bind:bindPassword, reset:resetPassword } = useInput('');
   const { value:confirmPassword, bind:bindConfirmPassword, reset:resetConfirmPassword } = useInput('');
+  const [signupErrorMessage, setSignupErrorMessage] = useState("");
 
   async function ourSignUpAttempt(one, two, three, four){
     console.log("Method getting called? ");
@@ -24,7 +25,8 @@ export default function Signup(props) {
     CONFIRMSIGNUPDATA['username'] = three;
     CONFIRMSIGNUPDATA['password'] = four;
 
-    if((LOGINDATA.username === CONFIRMSIGNUPDATA.username) && (LOGINDATA.password === CONFIRMSIGNUPDATA.password)) {
+
+    if((LOGINDATA.username.length > 3) && (LOGINDATA.password.length > 3) && (LOGINDATA.username === CONFIRMSIGNUPDATA.username) && (LOGINDATA.password === CONFIRMSIGNUPDATA.password)) {
       try {
         const response = await fetch(url, {
           method: 'POST', // or 'PUT'
@@ -43,14 +45,21 @@ export default function Signup(props) {
           LOGINDATA['password'] = '';
           CONFIRMSIGNUPDATA['username'] = '';
           CONFIRMSIGNUPDATA['password'] = '';
+          setSignupErrorMessage('Something went wrong. Maybe the server is down? Maybe your username is already taken?');
         }
     } else {
       console.log("Strings dont match...");
+      LOGINDATA['username'] = '';
+      LOGINDATA['password'] = '';
+      CONFIRMSIGNUPDATA['username'] = '';
+      CONFIRMSIGNUPDATA['password'] = '';
+      setSignupErrorMessage('It looks like something went wrong. Maybe your usernames and passwords didnt match? Please try again.');
     }
 
   }
 
    const handleSubmit = (evt) => {
+      setSignupErrorMessage('');
        evt.preventDefault();
        // alert(`Submitting Username: ${userName} Password: ${password} confirmUserName: ${confirmUserName} confirmPassword: ${confirmPassword}`);
 
@@ -63,6 +72,7 @@ export default function Signup(props) {
   }
 
   return (
+
     <div>
       <Header />
       <div className="subHeader">
@@ -98,7 +108,10 @@ export default function Signup(props) {
          <div className="submitButton">
            <input type="submit" value="Submit" />
         </div>
-        </div>
+      </div>
+      <div className="errorField">
+        {signupErrorMessage}
+      </div>
    </form>
    </div>
   </div>

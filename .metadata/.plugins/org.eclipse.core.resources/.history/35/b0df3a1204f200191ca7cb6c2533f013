@@ -68,6 +68,7 @@ public class JwtAuthenticationController {
 		
 		if(username == null || password == null) {
 			System.out.println("Null username or password provided");
+			return;
 		}
 		
 		try {

@@ -41,3 +41,8 @@
   	position:relative;
   	top:1px;
   }
+
+  .errorField{
+    margin-top: 20px;
+    color: red;
+  }

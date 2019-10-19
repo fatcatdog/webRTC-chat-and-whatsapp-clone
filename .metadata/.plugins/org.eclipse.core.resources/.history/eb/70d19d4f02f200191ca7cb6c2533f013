@@ -48,11 +48,10 @@ public class JwtAuthenticationController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-	
-		if(user.getUsername() == null || user.getPassword() == null) {
-			return ResponseEntity.ok("Null username or password provided");
-		} else if(user.getUsername().equals("") || user.getPassword().equals("")) {
-			return ResponseEntity.ok("Empty username or password provided");
+		
+		
+		if(user.getUsername().equals("") || user.getPassword().equals("")) {
+			System.out.println("user.getUsername().equals(\"\")");
 		}
 		
 		boolean usernameAvailable = userDetailsService.checkIfUsernameTaken(user.getUsername());
@@ -65,11 +64,6 @@ public class JwtAuthenticationController {
 	}
 
 	private void authenticate(String username, String password) throws Exception {
-		
-		if(username == null || password == null) {
-			System.out.println("Null username or password provided");
-		}
-		
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
@@ -79,6 +73,5 @@ public class JwtAuthenticationController {
 		} catch (Exception e) {
 			System.out.println("JwtAuthenticationController authenticate exception :( " + e);
 		}
-		
 	}
 }
