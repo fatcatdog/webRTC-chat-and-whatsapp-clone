@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className="mainHeader">
       <h1>CommunicationApp</h1>
-      <p><A href="/home">Home</A> <A href="/logout">Logout</A></p>
+      <p><A href="/home">Home</A> <A href="/messages">Messages</A> <A href="/logout">Logout</A></p>
     </div>
   );
 }

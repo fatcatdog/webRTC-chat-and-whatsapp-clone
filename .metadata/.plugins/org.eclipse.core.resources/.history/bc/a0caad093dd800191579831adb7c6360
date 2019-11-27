@@ -1,6 +1,0 @@
-jwt.secret=javainuse
-spring.datasource.url=jdbc:mysql://localhost:3306/BlogBlog
-spring.datasource.username=root
-spring.datasource.password=Baseball
-spring.datasource.platform=mysql
-spring.jpa.hibernate.ddl-auto=create-drop

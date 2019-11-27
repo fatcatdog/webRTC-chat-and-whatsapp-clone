@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Websockets Tutorial Client</title>
+
+    <style>
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/bundles/stomp.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="../webSocketStatic/js/main.js"></script>
+
+    <script>
+    </script>
+</head>
+<body>
+  <noscript>
+    <h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+      enabled. Please enable
+      Javascript and reload this page!
+    </h2>
+  </noscript>
+<div id="main-content">
+    <div>
+        <div>
+            <form>
+                <div>
+                    <label for="connect">WebSocket connection:</label>
+                    <button onClick="clickConnect(event)" type="submit">Connect</button>
+                    <button onClick="clickConnectSockJS(event)" type="submit">ConnectSockJS</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <form>
+                <div>
+                    <button onClick="clickDisconnect(event)" type="submit">
+                        Disconnect
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            <form>
+                <div>
+                    <label for="from">Username:</label>
+                    <input id="from" placeholder="Username..." type="text">
+                    <label for="message">Message:</label>
+                    <input id="message" placeholder="Your message here..." type="text">
+                </div>
+                <button onClick="clickSend(event)" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            <table id="responses">
+                <thead>
+                <tr>
+                    <th>Messages</th>
+                </tr>
+                </thead>
+                <tbody id="messages">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

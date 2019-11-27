@@ -1,15 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { Component }  from "react";
 import Header from './Header';
 
-export default function StartChat(props) {
-  console.log("props :)");
-  console.log(props.id);
+class StartChat extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
 
   return (
     <div>
       <Header />
       <h1>StartChat</h1>
-      <p>{props.id}</p>
+        <p>
+       This is the message value:
+       </p>
+
+
     </div>
+
   );
 }
+}
+
+export default StartChat;

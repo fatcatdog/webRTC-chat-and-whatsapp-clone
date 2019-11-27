@@ -21,10 +21,8 @@ const useFetchLoggedInUsers = url => {
         const json = await response.json();
 
         const listOfJson = json.map((username, index) =>
-           // ourString = "/startchat/" + {userName.toString()};
-
           <li key={index}>
-          <A href={"/startchat/" + username.toString()} username>{index} {username}</A>
+            <A href={"/startchat/" + username.toString()} username>{index} {username}</A>
           </li>
         );
 

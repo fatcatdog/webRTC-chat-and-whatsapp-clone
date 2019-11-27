@@ -46,7 +46,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 			DAOUser user = userRepository.findByUsername(userSubmittedUsername);
 
 			if(user == null) { 
-				System.out.println("Hey Dawg");
+				System.out.println("checkIfUsernameTaken() method success");
 				return true;
 			} else {
 				return false;
