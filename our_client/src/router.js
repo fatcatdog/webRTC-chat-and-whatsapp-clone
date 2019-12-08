@@ -10,10 +10,11 @@ const routes = {
   "/": () => <Login />,
   "/login": () => <Login />,
   "/signup": () => <Signup />,
-  "/home": () => <Home />,
+"/home": () => <Home />,
   "/startchat/:id":  ({id}) => <StartChat id={id} />,
   "/messages": () => <Messages />,
   "/logout": () => <Logout />
 };
 
 export default routes;
+ // render={(props) => <Dashboard {...props} isAuthed={true} />}

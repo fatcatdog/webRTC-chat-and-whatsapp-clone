@@ -1,17 +1,5 @@
 var stompClient = null;
 
-// function setConnected(connected) {
-//     $("#connect").prop("disabled", connected);
-//     $("#connectSockJS").prop("disabled", connected);
-//     $("#disconnect").prop("disabled", !connected);
-//     if (connected) {
-//         $("#responses").show();
-//     } else {
-//         $("#responses").hide();
-//     }
-//     $("#messages").html("");
-// }
-
 function frameHandler(frame) {
     // setConnected(true);
     console.log('Connected: ' + frame);
@@ -19,6 +7,7 @@ function frameHandler(frame) {
         showMessage(message.body);
     });
 }
+
 function onSocketClose() {
     if (stompClient !== null) {
         stompClient.deactivate();
@@ -26,6 +15,7 @@ function onSocketClose() {
     // setConnected(false);
     console.log("Socket was closed. Setting connected to false!")
 }
+
 function connect() {
     stompClient = new window.StompJs.Client({
         webSocketFactory: function () {
@@ -40,6 +30,7 @@ function connect() {
     };
     stompClient.activate();
 }
+
 function connectSockJs() {
     stompClient = new window.StompJs.Client({
         webSocketFactory: function () {
@@ -98,7 +89,7 @@ function sendMessage() {
 
 function showMessage(message) {
     var msg = JSON.parse(message);
-
+    console.log(msg);
     var parent = document.getElementById("responses");
     var p = document.createElement("p");
     parent.prepend(msg['timeStamp'] + "  " +  msg['from']  + "  " + msg['message'] + "  ", p);

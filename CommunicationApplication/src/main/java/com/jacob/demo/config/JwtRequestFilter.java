@@ -1,6 +1,10 @@
 package com.jacob.demo.config;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -27,13 +31,33 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
-
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
+		
+		System.out.println("Our JwtRequestFilter filter ()()()()()()()");
 
-		final String requestTokenHeader = request.getHeader("Authorization");
-
+		final String requestTokenHeader;
+			
+			if(request.getParameter("token") != null) {
+				System.out.println("Not null " + request.getParameter("token"));
+				
+				requestTokenHeader = "Bearer " + request.getParameter("token");
+			} else {
+				requestTokenHeader = request.getHeader("Authorization");
+			}
+			
+			
+			StringBuilder requestURL = new StringBuilder(request.getRequestURL().toString());
+		    String queryString = request.getQueryString();
+			    
+		    if (queryString == null) {
+		        System.out.println(requestURL.toString());
+		    } else {
+		    	System.out.println(requestURL.append('?').append(queryString).toString());
+		    }
+		   
 		String username = null;
 		String jwtToken = null;
 		// JWT Token is in the form "Bearer token". Remove Bearer word and get

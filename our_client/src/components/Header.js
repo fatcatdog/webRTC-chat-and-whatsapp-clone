@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/header.css';
-import {  navigate, A } from "hookrouter";
+import {  A } from "hookrouter";
 
 export default function Header() {
 

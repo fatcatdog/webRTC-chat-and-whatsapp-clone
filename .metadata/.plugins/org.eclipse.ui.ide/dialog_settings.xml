@@ -48,7 +48,7 @@
 		</list>
 	</section>
 	<section name="org.springsource.ide.eclipse.commons.quicksearch.ui.QuickSearchDialog.DIALOG_SETTINGS">
-		<item key="LAST_QUERY" value="Hey Dawg"/>
+		<item key="LAST_QUERY" value="cors"/>
 		<item key="PATH_FILTER" value=""/>
 		<item key="CASE_SENSITIVE" value="true"/>
 		<item key="KEEP_OPEN" value="false"/>
@@ -68,5 +68,12 @@
 			<item key="DIALOG_Y_ORIGIN" value="87"/>
 			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 		</section>
+	</section>
+	<section name="CleanDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="478"/>
+		<item key="DIALOG_Y_ORIGIN" value="192"/>
+		<item key="DIALOG_WIDTH" value="484"/>
+		<item key="DIALOG_HEIGHT" value="377"/>
+		<item key="TOGGLE_SELECTED" value="false"/>
 	</section>
 </section>
